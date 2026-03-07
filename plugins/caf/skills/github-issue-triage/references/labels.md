@@ -54,3 +54,23 @@ gh label create "performance" --color "c5def5" --description "Relates to speed, 
 gh label create "security" --color "ee0701" --description "Has security implications — handle with care"
 gh label create "good-first-issue" --color "7057ff" --description "Good entry point for new contributors"
 ```
+
+## Additional Labels
+
+| Label | Color | Description |
+|-------|-------|-------------|
+| `regression` | `#e4460a` | Previously working behavior that broke |
+| `accessibility` | `#bfd4f2` | Affects users with disabilities or assistive technology needs |
+| `flaky-test` | `#fef2c0` | Test that fails intermittently without code changes |
+| `api` | `#c2e0c6` | Relates to an external or internal API contract |
+| `breaking-change` | `#b60205` | Change that is not backward-compatible |
+
+### Creating additional labels
+
+```bash
+gh label create "regression" --color "e4460a" --description "Previously working behavior that broke"
+gh label create "accessibility" --color "bfd4f2" --description "Affects users with disabilities or assistive technology needs"
+gh label create "flaky-test" --color "fef2c0" --description "Test that fails intermittently without code changes"
+gh label create "api" --color "c2e0c6" --description "Relates to an external or internal API contract"
+gh label create "breaking-change" --color "b60205" --description "Change that is not backward-compatible"
+```
