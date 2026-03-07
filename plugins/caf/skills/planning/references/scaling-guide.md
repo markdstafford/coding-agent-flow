@@ -4,20 +4,20 @@ The planning process is designed to scale from large applications to small bug f
 
 ## Scaling table
 
-| Section | App | Large feature | Small feature | Big refactor | Small refactor | Chore/bug |
-| --- | --- | --- | --- | --- | --- | --- |
-| Name | Yes | Yes | Yes | Yes | Yes | Yes |
-| Description | Yes | Yes | Yes | Yes | Yes | Yes |
-| What/why | Yes | Yes | No | Yes | No | No |
-| Goals | Yes | Yes | Yes | No | No | No |
-| High-level requirements | Yes | Yes | No | Yes | No | No |
-| Personas | Yes | Yes | Yes | No | No | No |
-| Narratives | No | Yes | Yes | No | No | No |
-| User stories | No | Yes | Yes | No | No | No |
-| Related features | Yes | Yes | Yes | Yes | Yes | Yes |
-| Design spec | Optional | As needed | As needed | As needed | No | No |
-| Tech spec | Yes | Yes | Yes | Yes | Yes | As needed |
-| Task list | Yes | Yes | Yes | Yes | Yes | Yes |
+| Section | App | Large feature | Small feature | Enhancement | Big refactor | Small refactor | Chore/bug |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Name | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| Description | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
+| What/why | Yes | Yes | No | Yes (brief, 1 para each) | Yes | No | No |
+| Goals | Yes | Yes | Yes | No | No | No | No |
+| High-level requirements | Yes | Yes | No | No | Yes | No | No |
+| Personas | Yes | Yes | Yes | No (inherited) | No | No | No |
+| Narratives | No | Yes | Yes | No (optional if novel) | No | No | No |
+| User stories | No | Yes | Yes | Yes | No | No | No |
+| Related features | Yes | Yes | Yes | No | Yes | Yes | Yes |
+| Design spec | Optional | As needed | As needed | As needed (delta only) | As needed | No | No |
+| Tech spec | Yes | Yes | Yes | Yes (delta only) | Yes | Yes | As needed |
+| Task list | Yes | Yes | Yes | Yes | Yes | Yes | Yes |
 
 ## Task type definitions
 
@@ -94,6 +94,34 @@ The planning process is designed to scale from large applications to small bug f
 - Streamlined but still structured
 - Goals ensure clear success criteria
 - Narratives still reveal the feature naturally
+
+### Enhancement
+
+**Scope:** Improvement or extension to an existing feature
+
+**Examples:**
+- @-reference files in an existing chat panel
+- Add keyboard shortcut to an existing action
+- Add a filter to an existing list view
+
+**Required sections:**
+- Parent feature reference
+- What, Why (1 paragraph each)
+- User stories (3-6 stories)
+- Technical changes (delta only)
+- Task list
+
+**Skip:**
+- Goals (implied by Why)
+- Personas (inherited from parent feature)
+- Narratives (unless the interaction is genuinely novel)
+- Non-goals (unless scope is ambiguous)
+- Full architecture diagrams (reference parent's)
+
+**Notes:**
+- Everything is framed as delta on the parent feature
+- Do not re-describe what already exists
+- If the scope grows to feel like a new standalone feature, escalate to feature requirements
 
 ### Big refactor
 
@@ -183,6 +211,7 @@ Use this decision tree:
 
 1. **Is this a new application?** → App
 2. **Is this user-facing functionality?**
+   - **Improvement to something that already exists** → Enhancement
    - **Major functionality with multiple aspects** → Large feature
    - **Focused, single-purpose functionality** → Small feature
 3. **Is this changing code structure/architecture?**

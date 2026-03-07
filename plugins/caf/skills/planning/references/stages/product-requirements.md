@@ -142,6 +142,10 @@ Only include if design constraints exist. Ask about brand colors, typography, sp
 
 ## For features
 
+> **Is this an enhancement?** If the work improves something that already exists rather than
+> creating new standalone functionality, use the enhancements stage instead
+> (`references/stages/enhancements.md`). The feature requirements stage is for new functionality.
+
 ### 1. What (1-3 paragraphs)
 
 Same process as applications. Same anti-solutioning rules apply.
