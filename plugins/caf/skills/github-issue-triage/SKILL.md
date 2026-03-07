@@ -208,8 +208,8 @@ After a successful write, prompt based on the type label:
 
 **Fix now — route based on type label:**
 
-- **Bug** → Invoke `superpowers:writing-plans` to create a detailed implementation plan.
-  Then invoke `superpowers:using-git-worktrees` to create an isolated worktree.
+- **Bug** → Follow the `caf:planning` implementation handoff stage using issue `#[number]`
+  as the task list location.
 - **Feature (`feature-request`)** → Invoke `caf:planning` to start the feature requirements stage.
 - **Enhancement** → Invoke `caf:planning` to start the enhancement stage.
 - **Documentation** → Open the relevant documentation file and proceed directly.
@@ -361,7 +361,7 @@ Want to start planning any of these now?
 ```
 
 **If yes** — route based on type:
-- Bug → `superpowers:writing-plans`, then `superpowers:using-git-worktrees`
+- Bug → Follow the `caf:planning` implementation handoff stage using the issue number as the task list location.
 - Feature → `caf:planning` to start the feature requirements stage
 - Enhancement → `caf:planning` to start the enhancement stage
 - Documentation → open the relevant file and proceed directly
