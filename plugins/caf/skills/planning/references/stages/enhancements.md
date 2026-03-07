@@ -19,7 +19,9 @@ stand alone as independent functionality, use the feature requirements stage ins
 
 ## Prerequisite check
 
-Before starting, locate and read the parent feature spec in `.eng-docs/specs/`.
+First, run the standard prerequisite check from SKILL.md (ADRs, wiki documents, dependent feature specs).
+
+Then, additionally locate and read the parent feature spec in `.eng-docs/specs/`.
 
 **If the parent feature spec doesn't exist:** stop. The enhancement cannot be specified without it.
 Propose creating the parent feature spec first using the feature requirements stage.
@@ -34,6 +36,11 @@ Ask the human: "Which feature does this enhance?" Identify the corresponding spe
 Read it. Present a one-sentence summary of what the parent feature does.
 
 **CHECKPOINT**: Confirm with the human before proceeding.
+
+Once the parent feature is confirmed, choose a short kebab-case name for the enhancement (e.g., `at-reference-files`) and create the file:
+- Path: `.eng-docs/specs/enhancement-[name].md`
+- Copy from: `references/templates/enhancement.md`
+- Fill in the `## Parent feature` section now; leave all other sections to be filled in subsequent steps
 
 ### 2. What (1 paragraph)
 
@@ -86,6 +93,7 @@ When entering design-specs or tech-specs for an enhancement:
 - **Narratives are optional** — add a narrative only if the interaction is genuinely novel; otherwise user stories suffice
 - **Non-goals are optional** — only include if there's real scope ambiguity to address
 - **Architecture diagrams are optional** — only add if the enhancement introduces new components; otherwise reference the parent feature's diagrams
+- **Stage placeholders are additive** — when a later stage adds content to a section, append it below the placeholder line rather than removing it. This preserves traceability of what was added at each stage.
 
 For templates and examples, see:
 - `references/templates/enhancement.md` — template for enhancement-*.md artifacts

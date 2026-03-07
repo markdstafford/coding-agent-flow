@@ -30,6 +30,8 @@ Use this template when creating a new enhancement artifact.
 
 ### Affected files
 
+*(Populated during tech specs stage — list files that will change and why)*
+
 - `path/to/file.ext` — [what changes and why]
 
 ### Changes
