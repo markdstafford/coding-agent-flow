@@ -35,8 +35,10 @@ Document:
 Create a GitHub issue with the following body structure:
 
 ```bash
-body_file=$(mktemp)
-cat > "$body_file" << 'BODY'
+gh issue create \
+  --title "[precise bug title]" \
+  --label "bug,[priority-label]" \
+  --body-file - << 'EOF'
 ## Summary
 [1-2 sentences describing the bug and its impact.]
 
@@ -62,12 +64,7 @@ cat > "$body_file" << 'BODY'
 ## Testing Requirements
 - [ ] [Specific verifiable test case]
 - [ ] [Specific verifiable test case]
-BODY
-gh issue create \
-  --title "[precise bug title]" \
-  --label "bug,[priority-label]" \
-  --body-file "$body_file"
-rm "$body_file"
+EOF
 ```
 
 The "Testing Requirements" checkboxes become the leaf tasks for abbreviated task decomposition.
