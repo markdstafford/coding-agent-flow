@@ -215,7 +215,7 @@ Replace KEYWORDS with extracted terms and CURRENT_NUMBER with the number of the 
   - **close** → post a comment referencing the duplicate, then close:
     ```bash
     gh issue comment [number] --body "Closing as duplicate of #[match-number]."
-    gh issue close [number] --reason "duplicate"
+    gh issue close [number] --reason "not planned"
     ```
     Move to the next issue. Do not proceed to Step 7.
   - **proceed** → continue to Step 7 as normal
@@ -432,6 +432,7 @@ Replace `KEYWORDS` with the extracted terms. Always report the result:
 **Suggested approach:** [from current item's Suggested Approach section]"
     ```
     Confirm: *"Evidence appended to #[match-number]."* Skip issue creation.
+    If processing a friction log, update the item's `Status` field to `triaged → #[match-number]` using the same python3 approach from Friction Log Mode in Step 1.
   - **new** → create the issue (see Issue creation below)
 
 **Issue creation:**
