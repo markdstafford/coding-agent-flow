@@ -15,7 +15,7 @@ description: >
   "let's triage" or "can we go through the issues" — don't try to do this ad-hoc without the skill.
 ---
 
-# GitHub Issue Triage
+# GitHub issue triage
 
 You are running a structured triage session. Work through unlabeled issues one at a time — enrich each
 with real code context, present a proposed triage for human approval, then write it back to GitHub.
@@ -37,7 +37,7 @@ a list of feedback into tracked items?"
 
 ---
 
-## Phase 1: Setup
+## Phase 1: setup
 
 ### 1. Verify prerequisites
 ```bash
@@ -61,7 +61,7 @@ for the exact colors and descriptions to use.
 
 ---
 
-## Phase 2: Fetch Untriaged Issues
+## Phase 2: Fetch untriaged issues
 
 ```bash
 gh issue list --state open --json number,title,body,author,labels,createdAt \
@@ -73,7 +73,7 @@ gh issue list --state open --json number,title,body,author,labels,createdAt \
 
 ---
 
-## Phase 3: Process Each Issue
+## Phase 3: Process each issue
 
 Work through issues sequentially. For each one:
 
@@ -87,7 +87,7 @@ An issue is **too unclear** if:
 - There's not enough context to identify what part of the codebase is involved
 - The expected vs. actual behavior is impossible to infer
 
-If unclear → go to the **Unclear Issue Path** below.
+If unclear → go to the **Unclear issue path** below.
 
 ### Step 3: Explore the codebase
 
@@ -260,7 +260,7 @@ After a successful write, prompt based on the type label:
 
 ---
 
-## Unclear Issue Path
+## Unclear issue path
 
 When an issue is too vague to triage:
 
@@ -286,7 +286,7 @@ gh issue edit [number] --add-label "needs-info"
 
 ---
 
-## Phase 4: Session Summary
+## Phase 4: Session summary
 
 After all issues are processed:
 
@@ -308,7 +308,7 @@ Fixing now:   [list issue numbers, or "none"]
 
 ---
 
-## Feedback Intake Mode
+## Feedback intake mode
 
 Use this mode when the user provides free-form feedback — bullet lists, verbal notes,
 screenshots, or any mix of observations about the app.

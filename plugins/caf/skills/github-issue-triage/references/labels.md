@@ -2,7 +2,7 @@
 
 Use these exact names, colors, and descriptions when creating labels with `gh label create`.
 
-## Type Labels
+## Type labels
 
 | Label | Color | Description |
 |-------|-------|-------------|
@@ -12,7 +12,7 @@ Use these exact names, colors, and descriptions when creating labels with `gh la
 | `documentation` | `#0075ca` | Improvements or additions to documentation |
 | `question` | `#d876e3` | Further information is requested |
 
-## Priority Labels
+## Priority labels
 
 | Label | Color | Description |
 |-------|-------|-------------|
@@ -21,7 +21,7 @@ Use these exact names, colors, and descriptions when creating labels with `gh la
 | `P2: medium` | `#e4b429` | Bug with workaround, or high-value feature request |
 | `P3: low` | `#fef2c0` | Minor issue, polish, or nice-to-have |
 
-## Meta Labels
+## Meta labels
 
 | Label | Color | Description |
 |-------|-------|-------------|
@@ -31,7 +31,7 @@ Use these exact names, colors, and descriptions when creating labels with `gh la
 | `security` | `#ee0701` | Has security implications — handle with care |
 | `good-first-issue` | `#7057ff` | Good entry point for new contributors |
 
-## Creating Labels
+## Creating labels
 
 ```bash
 # Type labels
@@ -55,7 +55,7 @@ gh label create "security" --color "ee0701" --description "Has security implicat
 gh label create "good-first-issue" --color "7057ff" --description "Good entry point for new contributors"
 ```
 
-## Additional Labels
+## Additional labels
 
 | Label | Color | Description |
 |-------|-------|-------------|
