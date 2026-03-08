@@ -39,15 +39,21 @@ the CAF tasks as the coarse-grained units — do not generate new top-level task
 scratch. You may (and should) expand each CAF task into TDD micro-steps, but the CAF task
 is the unit of human-visible tracking.
 
-**Plan storage.** Save the plan to `.superpowers-plans/YYYY-MM-DD-<feature-name>.md`.
-Before saving, check that `.superpowers-plans/` is in `.gitignore`; add it if not.
+**Plan storage.** Save the plan to `.eng-docs/.superpowers-plans/YYYY-MM-DD-<feature-name>.md`.
+Before saving, check that `.eng-docs/.superpowers-plans/` is in `.gitignore`; add it if not.
 
 **Task checkbox tracking.** Each CAF leaf task's section in the plan must end with an
 explicit step to check it off in [location]:
 
 - **Markdown file**: edit the file — change `- [ ]` to `- [x]` for that task's line
 - **GitHub issue**: read the current issue body, change `- [ ]` to `- [x]` for that
-  task's line, write back with `gh issue edit [N] --body "[updated body]"`
+  task's line, write back with:
+```bash
+body_file=$(mktemp)
+printf '%s' "$updated_body" > "$body_file"
+gh issue edit [N] --body-file "$body_file"
+rm "$body_file"
+```
 
 After checking off a leaf task, check whether all sibling tasks under the same parent are
 now checked. If so, check off the parent the same way. Continue propagating up the

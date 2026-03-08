@@ -111,21 +111,28 @@ Assign the following:
 | Label | When to use |
 |-------|-------------|
 | `bug` | Something is broken — behavior doesn't match intent |
-| `feature-request` | A new capability being requested |
-| `enhancement` | An improvement to existing functionality |
+| `feature-request` | Net-new capability with no existing equivalent, OR a significant modification that changes a feature's fundamental behavior or scope. Ask: "Is there anything like this in the app already?" — if no, it's a `feature-request`. Examples: building a settings dialog where none exists; rewriting a renderer to support a plugin architecture. |
+| `enhancement` | Extends or improves something that already exists without significantly changing what it is. Heuristic: ask "does something like this already exist, and is the change purely additive rather than transformative?" — if yes to both, it's an `enhancement`. Examples: adding Mermaid support to an existing markdown renderer; adding keyboard shortcuts to an existing action. |
 | `documentation` | Docs are missing, wrong, or unclear |
 | `question` | User needs clarification, not a code change |
 
 **One priority label** (required):
+
 | Label | When to use |
 |-------|-------------|
-| `P0: critical` | Production broken, data loss, or security issue — fix immediately |
-| `P1: high` | Significant user-facing breakage with no workaround |
-| `P2: medium` | Bug with a workaround, or a high-value feature request |
-| `P3: low` | Minor issue, polish, nice-to-have |
+| `P0: critical` | Data loss, security vulnerability, or complete service outage |
+| `P1: high` | Core purpose of the app is blocked with no workaround. Decision rule: ask "does a reasonable workaround exist within the app?" — if no, use P1. |
+| `P2: medium` | Workaround exists but requires leaving the app entirely, or significant degradation of the core flow. High-value feature request. Rule: if the only workaround requires leaving the app → P2 minimum. |
+| `P3: low` | Purely cosmetic with no functional impact, or low-value nice-to-have |
 
 **Zero or more meta labels** (optional):
-`usability`, `performance`, `security`, `good-first-issue`
+
+| Label | When to apply |
+|-------|---------------|
+| `usability` | UX issue affecting discoverability, orientation, or ease of use — even if technically functional |
+| `performance` | Noticeably slow, high memory, or resource-intensive behavior |
+| `security` | Any potential for data exposure, injection, or unauthorized access |
+| `good-first-issue` | Well-scoped, self-contained, low-risk change suitable for a new contributor |
 
 ### Step 5: Write the enriched title and body
 
@@ -190,12 +197,21 @@ Approve this triage? (yes / no / edit)
 
 ### Step 7: Write back to GitHub
 
+Every issue **must** have exactly one type label and exactly one priority label in `--add-label`. Double-check before running.
+
+Use `--body-file` to avoid shell-escaping of backticks and code fences in the issue body:
+
 ```bash
+body_file=$(mktemp)
+printf '%s' '[new body]' > "$body_file"
 gh issue edit [number] \
   --title "[new title]" \
-  --body "[new body]" \
-  --add-label "[label1],[label2],..."
+  --add-label "[type-label],[priority-label]" \
+  --body-file "$body_file"
+rm "$body_file"
 ```
+
+Replace `[new body]` with the enriched body content. Replace `[type-label]` with the assigned type (e.g. `bug`, `enhancement`) and `[priority-label]` with the assigned priority (e.g. `P1: high`, `P2: medium`). Include any meta labels as additional comma-separated entries.
 
 ### Step 8: Offer to fix it now
 

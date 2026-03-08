@@ -54,6 +54,8 @@ Review the approved tech spec to identify:
       - **Dependencies**: "Task: Create `email_templates` table"
 ```
 
+**Format is always required.** Smaller work produces fewer tasks, not a degraded format. A flat checklist (items without descriptions, acceptance criteria, and dependencies) is never acceptable output from this stage, regardless of feature size.
+
 ### 3. Write task details
 
 Each leaf task MUST include:
