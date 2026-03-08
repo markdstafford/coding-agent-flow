@@ -192,19 +192,19 @@ Approve this triage? (yes / no / edit)
 ```
 
 - **yes** → run dedup check (Step 6a below), then proceed to Step 7
-- **no** → drop this issue and move to the next
+- **no** → skip Step 6a; drop this issue and move to the next
 - **edit** → incorporate the user's feedback and re-present; don't write until approved
 
 ### Step 6a: Check for duplicates
 
-Extract 3–5 key terms from the proposed title and search for existing labeled issues:
+Extract 3–5 meaningful nouns or verbs from the proposed title (skip stop words like "the", "is", "not"). Space-separate terms for a GitHub AND search — if the first search returns no results, retry with a subset of 2–3 terms. Search for existing labeled issues:
 
 ```bash
 gh issue list --search "KEYWORDS" --state open --json number,title,labels \
-  --jq '.[] | "#\(.number): \(.title) [\(.labels | map(.name) | join(", "))]"'
+  --jq '[.[] | select(.number != CURRENT_NUMBER)] | .[] | "#\(.number): \(.title) [\(.labels | map(.name) | join(", "))]"'
 ```
 
-Replace `KEYWORDS` with the extracted terms. Always report the result to the user:
+Replace KEYWORDS with extracted terms and CURRENT_NUMBER with the number of the issue being triaged. Always report the result to the user:
 
 - *"No duplicates found."* → proceed to Step 7
 - If matches found, present them:
