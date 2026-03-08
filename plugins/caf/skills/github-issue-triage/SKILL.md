@@ -295,9 +295,33 @@ Receive the feedback. It may arrive as:
 - A verbal description in the conversation
 - A mix of screenshots and notes
 - A single GitHub issue that contains multiple conflated items
+- A friction log file path (e.g. `.eng-docs/.friction-logs/2026-03-07-143022-episteme.md`)
 
 If the input is a GitHub issue body, treat it the same as free-form text — the goal is
 to tease apart what's inside it.
+
+**If the input is a friction log file path or matches the friction log format** (presence
+of `## Item N:` headings and `**Status:**` fields), activate **Friction Log Mode**:
+
+1. Read the file
+2. Count items with `Status: untracked` vs `Status: triaged → #N`
+3. Report: *"Found N items, M already triaged. Processing X untracked items."*
+4. Skip any item where `Status` is `triaged → #N` — do not re-process it
+5. For each untracked item, proceed through Steps 2–4 as normal, with these additions:
+   - Use the item's **severity** as a prior for priority:
+     🔴 → lean P1, 🟡 → lean P2, 🟢 → lean P3 (triage judgment still overrides)
+   - The item's **"Trying to"** field provides the user intent context — use it when
+     writing the GitHub issue Summary and Expected Behavior sections
+   - After writing the item to GitHub (Step 4), update the `Status` field in the
+     friction log file from `untracked` to `triaged → #N`:
+     ```bash
+     # Read the file, replace "Status: untracked" for this item with "Status: triaged → #N"
+     # Write back using --body-file pattern (or sed for local file edits)
+     sed -i '' "0,/Status: untracked/s/Status: untracked/Status: triaged → #$(gh issue view --json number -q .number)/\" \
+       path/to/friction-log.md
+     ```
+     Note: replace `0,/pattern/` with the specific item's occurrence to avoid replacing
+     the wrong item's status. Read the file after each update to verify correctness.
 
 ### Step 2: Tease apart the items
 
