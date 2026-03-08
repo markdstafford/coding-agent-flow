@@ -4,7 +4,7 @@
 
 Episteme is a document authoring application for teams working on collaborative documentation. Teams use it to draft, review, discuss, and approve documents—whether product descriptions, technical designs, standard operating procedures, or wiki-style knowledge bases. The application guides documents through the full lifecycle: authoring, gathering feedback through comments, resolving discussions, and obtaining formal sign-offs.
 
-What makes Episteme different is that AI participates as a collaborator throughout this entire workflow. When documents are stored as structured, interconnected content, AI understands how they relate to each other, follows your team's templates and conventions, and has full context of existing decisions. This means AI can help draft new content that aligns with what you've already written, surface relevant related documents during review, and assist with discussions by understanding your team's prior decisions and patterns.
+What makes Episteme different is that AI participates as a collaborator throughout this entire workflow. When documents are stored as structured, interconnected content, AI understands how they relate to each other, follows your team's templates and conventions, and has full context of existing decisions. This means AI can help draft new content that aligns with what you've already written, show relevant related documents during review, and assist with discussions by understanding your team's prior decisions and patterns.
 
 Teams get both a structured workflow for moving documents from draft to approved, and AI assistance that's deeply aware of their full document collection and how everything connects.
 

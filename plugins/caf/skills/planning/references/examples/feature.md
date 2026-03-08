@@ -10,7 +10,7 @@ This is the foundational AI integration -- the interaction surface that later fe
 
 ## Why
 
-Without AI integration, Episteme is just another markdown viewer. The entire premise of the app is that AI participates as a collaborator throughout the document lifecycle -- authoring, review, discussion, and approval. The chat assistant is the surface through which that collaboration happens.
+Without AI integration, Episteme is just another markdown viewer. The entire premise of the app is that AI participates as a collaborator throughout the document lifecycle -- authoring, review, discussion, and approval. The chat assistant is the channel through which that collaboration happens.
 
 During authoring, the AI drafts content that aligns with existing documents, follows team conventions, and connects related decisions. During review, it summarizes documents, answers questions about content, and helps reviewers understand implications by referencing prior work. During discussion, it helps resolve comments by understanding the full context of what's already been decided. Every stage gets faster because the AI has read everything and understands how it all fits together.
 
