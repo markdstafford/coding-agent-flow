@@ -154,7 +154,7 @@ When revisiting:
 **When reviewing:**
 
 - Explicitly consider requirements at the end of each step
-- Ensure the plan is robust and well-thought-through
+- Ensure the plan is complete and well-thought-through
 - Challenge weak points even if uncomfortable
 - Remember: You know more in some areas than your human
 - Objective guidance is more valuable than false agreement

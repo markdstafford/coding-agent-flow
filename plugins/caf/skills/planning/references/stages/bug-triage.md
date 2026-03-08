@@ -1,4 +1,4 @@
-# Bug Triage
+# Bug triage
 
 > **This is a process document.** Follow these steps in order.
 > Refer to the planning skill's SKILL.md for shared concepts

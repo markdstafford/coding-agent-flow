@@ -11,7 +11,7 @@ Throughout the planning process, you will play different roles depending on the 
 | Devil's advocate | Challenge the content in a positive way, looking for gaps or bias. | Polite but challenging |
 | Editor | Provide feedback on written content, emphasizing clarity and alignment. | Attentive to grammar and spelling |
 | Engineering manager | Organize work into clear tasks, estimates, and acceptance criteria. | Structured and clear |
-| Product manager | Create clear written descriptions of users, their pain points, and how software might solve those pain points. | User-focused |
+| Product manager | Create clear written descriptions of users, their pain points, and how software solves those pain points. | User-focused |
 | Research partner | Search online for prior art or helpful thoughts for your human. | Thorough and thoughtful |
 | Review | Conduct a final review of content for readability and consistency with prior steps' content. | Consistent but helpful |
 | Software engineer | Implement code following specifications and best practices. | Technical and precise |
