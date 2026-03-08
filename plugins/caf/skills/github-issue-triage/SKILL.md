@@ -315,14 +315,20 @@ of `## Item N:` headings and `**Status:**` fields), activate **Friction Log Mode
    - After writing the item to GitHub (Step 4), update the `Status` field in the
      friction log file from `untracked` to `triaged → #N`:
      ```bash
-     # Read the file, replace "Status: untracked" for this item with "Status: triaged → #N"
-     # Write back using --body-file pattern (or sed for local file edits)
-     sed -i '' "0,/Status: untracked/s/Status: untracked/Status: triaged → #$(gh issue view --json number -q .number)/" \
-       path/to/friction-log.md
+     # Capture the issue number when creating the issue:
+     issue_number=$(gh issue create \
+       --title "..." --label "..." --body-file "$body_file" \
+       --json number -q .number)
+     rm "$body_file"
+     # Update the first untracked Status field in the friction log:
+     python3 -c "
+path='path/to/friction-log.md'
+content=open(path).read()
+content=content.replace('**Status:** untracked','**Status:** triaged → #${issue_number}',1)
+open(path,'w').write(content)
+"
      ```
-     Note: The `0,/pattern/s/` form replaces only the first matching `Status: untracked` line.
-     Process items in order — update the file immediately after each `gh issue create` call —
-     so you always target the correct item. Read the file after each update to verify.
+     Note: Capture the issue number directly from `gh issue create --json number -q .number` — do not use `gh issue view`. The `replace(..., 1)` call updates only the first match. Process items in order and update the file immediately after each create so you always target the correct item. Read the file after each update to verify.
 
 ### Step 2: Tease apart the items
 

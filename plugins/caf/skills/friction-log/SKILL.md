@@ -60,15 +60,14 @@ When the user says "done", "that's it", "end the log", "finish", "stop", "quit",
 
 1. Suggest a short kebab-case session name based on the items logged
    (e.g. `episteme-triage-flow`, `onboarding-setup`, `docs-first-run`)
-2. Propose the rename: *"Rename to `YYYY-MM-DD-HHMMSS-<session-slug>.md`?"*
+2. Propose the rename: *"Rename to `<timestamp>-<session-slug>.md`?"*
+   (Use the timestamp from the filename established in Step 1; place the renamed file in the same directory.)
 3. On approval:
    ```bash
-   # Substitute the actual timestamp from step 1
-   mv .eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS.md \
-      .eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS-<session-slug>.md
+   mv <original-path> <directory>/<timestamp>-<session-slug>.md
    ```
-   (Substitute the actual timestamp used when the file was created in step 1.)
-4. Confirm: *"Saved to `.eng-docs/.friction-logs/YYYY-MM-DD-HHMMSS-<session-slug>.md`."*
+   where `<original-path>` is the full path from Step 1 and `<directory>` is its parent directory.
+4. Confirm: *"Saved to `<directory>/<timestamp>-<session-slug>.md`."*
 
 ---
 
