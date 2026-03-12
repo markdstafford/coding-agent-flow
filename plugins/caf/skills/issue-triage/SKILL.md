@@ -1,7 +1,7 @@
 ---
-name: github-issue-triage
+name: issue-triage
 description: >
-  Run a GitHub issue triage session for the current repository. Use this skill whenever the user says
+  Run an issue triage session for the current repository. Use this skill whenever the user says
   "triage", "triage issues", "let's triage", "do a triage run", "triage GitHub issues", "triage my issues",
   or anything suggesting they want to go through open issues and classify/prioritize them. The skill finds
   all unlabeled issues, enriches each one with code context, rewrites the title and body in detail,
@@ -15,7 +15,7 @@ description: >
   "let's triage" or "can we go through the issues" — don't try to do this ad-hoc without the skill.
 ---
 
-# GitHub issue triage
+# Issue triage
 
 You are running a structured triage session. Work through unlabeled issues one at a time — enrich each
 with real code context, present a proposed triage for human approval, then write it back to GitHub.
@@ -58,6 +58,16 @@ Remember the choice for the entire session.
 Run `gh label list` and compare against the taxonomy in `references/labels.md`. Create any missing labels
 using `gh label create "<name>" --color "<hex>" --description "<desc>"`. Refer to `references/labels.md`
 for the exact colors and descriptions to use.
+
+### 4. Load writing guidelines
+
+Load `caf:writing-guidelines` before generating any issue content. Apply the following
+throughout all issue titles and bodies:
+
+- Sentence case for all headings (e.g. "Steps to reproduce", not "Steps to Reproduce")
+- Active voice ("the skill asks" not "the user is asked")
+- Specific, concrete language — no vague terms like "robust" or "seamless"
+- No unnecessary jargon; define technical terms on first use if needed
 
 ---
 
@@ -144,24 +154,24 @@ Assign the following:
 ## Summary
 [1-2 sentences. Clear, specific, no jargon unless necessary.]
 
-## [Steps to Reproduce | Proposed Behavior]
+## [Steps to reproduce | Proposed behavior]
 [For bugs: numbered steps to trigger the issue.
 For features: describe the desired behavior and why it's valuable.]
 
-## Expected Behavior
+## Expected behavior
 [What should happen.]
 
-## Actual Behavior
+## Actual behavior
 [For bugs only: what currently happens.]
 
-## Affected Files
+## Affected files
 [Files likely requiring changes, based on code analysis.]
 - `path/to/file.ext` — [reason this file is involved]
 
-## Suggested Approach
+## Suggested approach
 [High-level implementation notes. What would need to change and roughly how.]
 
-## Testing Requirements
+## Testing requirements
 [Specific tests that would verify the fix or feature is complete.]
 - [ ] [test case description]
 - [ ] [test case description]
@@ -313,6 +323,9 @@ Fixing now:   [list issue numbers, or "none"]
 Use this mode when the user provides free-form feedback — bullet lists, verbal notes,
 screenshots, or any mix of observations about the app.
 
+Load `caf:writing-guidelines` before generating any issue content. Apply sentence case
+to all headings, active voice throughout, specific language, no unnecessary jargon.
+
 ### Step 1: Accept the input
 
 Receive the feedback. It may arrive as:
@@ -437,14 +450,46 @@ Replace `KEYWORDS` with the extracted terms. Always report the result:
 
 **Issue creation:**
 
-Create a GitHub issue using the same enriched format as repo triage mode (Steps 5–7 of Phase 3). Follow the same body template: Summary, Proposed Behavior or Steps to Reproduce, Expected Behavior, Affected Files, Suggested Approach, Testing Requirements.
+The process differs by type:
+
+**Bugs, documentation, questions** — create the issue directly using the enriched body
+template from Phase 3 Step 5 (Summary, Steps to reproduce, Expected behavior, Actual
+behavior, Affected files, Suggested approach, Testing requirements).
+
+**Features and enhancements** — run dedup check first, then write the spec and create the issue:
+
+1. **Run dedup check** — as described above. If a duplicate is found and the user
+   chooses `append`, append evidence to the existing issue and stop — do not write
+   a spec or create a new issue.
+
+2. **Write the spec** — invoke `caf:planning` (feature requirements stage for features,
+   enhancement stage for enhancements) to write the spec file to `.eng-docs/specs/`.
+
+3. **Commit and push the spec** — commit and push the spec file so the link in the
+   issue body is valid immediately:
+   ```bash
+   git add .eng-docs/specs/[filename].md
+   git commit -m "feat(specs): add [type] spec for [name]"
+   git push
+   ```
+   If the push fails, stop and surface the error. Do not create the issue until the
+   file is confirmed on the remote.
+
+4. **Create the issue** — use a summary + spec pointer body (not the full enriched
+   template). Task decompositions belong in the spec, not the issue:
+   ```markdown
+   ## Summary
+   [1-2 sentences: what this feature/enhancement does and why it matters.]
+
+   ## Spec
+   `.eng-docs/specs/[filename].md`
+   ```
 
 After creating each issue, confirm: *"Issue #[number] created for [item]."*
 
 Note: GitHub issues are created for all types — bugs, features, enhancements, documentation, and questions alike.
 The issue is the tracking artifact. The CAF planning spec is the planning artifact.
-When a CAF spec is later created, it should reference the issue number, and the issue
-should link to the spec.
+The issue links to the spec; the spec's frontmatter records the issue number.
 
 ### Step 5: Offer to start planning
 
