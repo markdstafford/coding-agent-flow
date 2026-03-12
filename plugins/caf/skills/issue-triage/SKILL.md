@@ -323,6 +323,9 @@ Fixing now:   [list issue numbers, or "none"]
 Use this mode when the user provides free-form feedback — bullet lists, verbal notes,
 screenshots, or any mix of observations about the app.
 
+Load `caf:writing-guidelines` before generating any issue content. Apply sentence case
+to all headings, active voice throughout, specific language, no unnecessary jargon.
+
 ### Step 1: Accept the input
 
 Receive the feedback. It may arrive as:
@@ -453,13 +456,17 @@ The process differs by type:
 template from Phase 3 Step 5 (Summary, Steps to reproduce, Expected behavior, Actual
 behavior, Affected files, Suggested approach, Testing requirements).
 
-**Features and enhancements** — write the spec file first, then create the issue:
+**Features and enhancements** — run dedup check first, then write the spec and create the issue:
 
-1. **Write the spec** — invoke `caf:planning` (feature requirements stage for features,
+1. **Run dedup check** — as described above. If a duplicate is found and the user
+   chooses `append`, append evidence to the existing issue and stop — do not write
+   a spec or create a new issue.
+
+2. **Write the spec** — invoke `caf:planning` (feature requirements stage for features,
    enhancement stage for enhancements) to write the spec file to `.eng-docs/specs/`.
 
-2. **Commit and push the spec** — before creating the issue, commit and push the spec
-   file so the link in the issue body is valid immediately:
+3. **Commit and push the spec** — commit and push the spec file so the link in the
+   issue body is valid immediately:
    ```bash
    git add .eng-docs/specs/[filename].md
    git commit -m "feat(specs): add [type] spec for [name]"
@@ -467,8 +474,6 @@ behavior, Affected files, Suggested approach, Testing requirements).
    ```
    If the push fails, stop and surface the error. Do not create the issue until the
    file is confirmed on the remote.
-
-3. **Run dedup check** — as described above.
 
 4. **Create the issue** — use a summary + spec pointer body (not the full enriched
    template). Task decompositions belong in the spec, not the issue:
