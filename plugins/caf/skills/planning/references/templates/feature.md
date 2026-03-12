@@ -3,6 +3,16 @@
 Use this template when creating a new feature artifact.
 
 ```markdown
+---
+created: YYYY-MM-DD
+last_updated: YYYY-MM-DD
+status: draft
+issue: null
+specced_by: github-username
+implemented_by: null
+superseded_by: null
+---
+
 # [Feature name]
 
 ## What
