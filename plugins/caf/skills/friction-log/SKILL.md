@@ -34,7 +34,23 @@ git rev-parse --is-inside-work-tree 2>/dev/null
 
 Stub header to use:
 
+Populate the frontmatter fields as follows:
+- `created` and `last_updated`: current date/time, same as the filename timestamp (e.g. `2026-03-11 14:32`)
+- `status: untriaged`
+- `captured_by`: current GitHub username — run `gh api user -q .login` to retrieve it
+- `triaged_by: null`
+
+Valid status values: `untriaged | partially-triaged | triaged`
+
 ```markdown
+---
+created: YYYY-MM-DD HH:MM
+last_updated: YYYY-MM-DD
+status: untriaged
+captured_by: github-username
+triaged_by: null
+---
+
 # Friction Log — YYYY-MM-DD HH:MM
 
 ---

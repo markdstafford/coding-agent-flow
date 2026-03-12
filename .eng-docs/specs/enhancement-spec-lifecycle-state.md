@@ -211,7 +211,7 @@ Add to the artifact structure section:
       - [ ] `last_updated` is set at both creation and the `accepted` transition
     - **Dependencies**: Task: Add frontmatter to ADR template
 
-- [ ] **Story: Update stage docs — lifecycle transitions**
+- [x] **Story: Update stage docs — lifecycle transitions**
   - [x] **Task: Update `task-decomposition.md` — set `status: approved` at checkpoint**
     - **Description**: In `references/stages/task-decomposition.md`, add an instruction to the human approval checkpoint step: after the human approves the task list, update the spec file's frontmatter `status` from `draft` to `approved` and set `last_updated`.
     - **Acceptance criteria**:
@@ -219,7 +219,7 @@ Add to the artifact structure section:
       - [ ] `last_updated` is set at the same time
       - [ ] Instruction specifies editing the spec file at its current path (which may be in `backlog/`)
     - **Dependencies**: Task: Add frontmatter to spec templates
-  - [ ] **Task: Update `implementation-handoff.md` — move spec from `backlog/`; set `implementing` and `complete`**
+  - [x] **Task: Update `implementation-handoff.md` — move spec from `backlog/`; set `implementing` and `complete`**
     - **Description**: In `references/stages/implementation-handoff.md`, add instructions for three frontmatter operations: (1) when the worktree is created (step 5), move the spec from `.eng-docs/specs/backlog/` to `.eng-docs/specs/` using `git mv`, then set `status: implementing`, `implemented_by` to the current GitHub username, and `last_updated`; (2) after the PR is created (end of step 6), set `status: complete` and `last_updated`.
     - **Acceptance criteria**:
       - [ ] Step 5 includes `git mv .eng-docs/specs/backlog/[name].md .eng-docs/specs/[name].md`
@@ -228,14 +228,14 @@ Add to the artifact structure section:
       - [ ] Instructions note that if the spec is already in `specs/` (not `backlog/`), skip the `git mv`
     - **Dependencies**: Task: Add frontmatter to spec templates
 
-- [ ] **Story: Update skill reference docs**
-  - [ ] **Task: Update `planning/SKILL.md` artifact structure section**
+- [x] **Story: Update skill reference docs**
+  - [x] **Task: Update `planning/SKILL.md` artifact structure section**
     - **Description**: In `plugins/caf/skills/planning/SKILL.md`, update the artifact structure section to: (1) add `specs/backlog/` as a subfolder entry with description "unimplemented specs; moved to `specs/` at implementation handoff", and (2) add a note that all artifact files begin with a YAML frontmatter block whose `status` field reflects lifecycle state.
     - **Acceptance criteria**:
       - [ ] Artifact structure section lists `specs/backlog/` with its description
       - [ ] A frontmatter convention note is present in the artifact structure section
     - **Dependencies**: None
-  - [ ] **Task: Update `friction-log/SKILL.md` — canonicalize frontmatter schema**
+  - [x] **Task: Update `friction-log/SKILL.md` — canonicalize frontmatter schema**
     - **Description**: In `plugins/caf/skills/friction-log/SKILL.md`, update the file creation step to explicitly specify the frontmatter schema: `created`, `last_updated`, `status: untriaged`, `captured_by`, `triaged_by: null`. Valid status values are `untriaged | partially-triaged | triaged`. This makes the schema normative rather than implicit from existing files.
     - **Acceptance criteria**:
       - [ ] File creation step specifies the full frontmatter schema with all fields
