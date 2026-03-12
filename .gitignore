@@ -4,3 +4,4 @@ node_modules/
 .eng-docs/.superpowers-plans/
 .eng-docs/.friction-logs/
 docs/plans/
+.worktrees/
