@@ -87,7 +87,26 @@ If no → task is too large or ambiguous. Break down further or add more detail.
 - Single logical unit
 - Clear start and end point
 
-**CHECKPOINT**: Get human approval on complete task list
+**CHECKPOINT**: Present a condensed summary for human approval — do not paste the full
+artifact into chat. Use a two-level outline: stories as top-level bullets, leaf tasks as
+sub-bullets under each story. Omit descriptions, acceptance criteria, dependencies, and
+implementation detail from the chat presentation — these stay in the written file.
+
+Example format:
+
+```
+- Story: Backend API for templates
+  - Task: Create email_templates table
+  - Task: Implement POST /api/v1/templates endpoint
+- Story: Frontend template editor
+  - Task: Build TemplateEditor component
+  - Task: Wire save action to POST endpoint
+```
+
+If the human wants the full detail, offer: "Full plan is in `[artifact path]` — want me
+to show it here?" Do not show the full text unless asked.
+
+Get human approval on the condensed summary before proceeding to implementation handoff.
 
 ## Key guidelines
 
