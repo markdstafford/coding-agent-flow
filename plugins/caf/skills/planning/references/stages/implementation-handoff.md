@@ -35,7 +35,50 @@ the implementation system:
 - **From CAF planning**: task list is in `.eng-docs/specs/[feature-filename].md`
 - **From a GitHub issue**: task list is in GitHub issue `#N`
 
-### 3. Implement with superpowers
+### 3. Ensure a GitHub issue exists
+
+Check whether the feature or enhancement has a linked GitHub issue. For spec files, check
+the frontmatter `issue` field. If no issue exists, create one:
+
+```bash
+body_file=$(mktemp)
+printf '%s' "[summary of What and Why from spec, plus link to spec file]" > "$body_file"
+output=$(gh issue create \
+  --title "[feature/enhancement name]" \
+  --label "[enhancement or feature-request],[priority-label]" \
+  --body-file "$body_file")
+rm "$body_file"
+echo "$output"
+```
+
+The issue body should contain:
+- A 1–2 sentence summary of what the feature/enhancement does and why it matters
+- A link to the spec file: `**Spec:** .eng-docs/specs/[filename].md`
+
+After creating the issue, record its number in the spec's frontmatter `issue` field.
+
+If an issue already exists, note its number and continue.
+
+### 4. Pull latest main
+
+Before creating the worktree, ensure the local base branch is current:
+
+```bash
+git pull origin main
+```
+
+This ensures the new branch forks from the current tip of remote, not a stale local snapshot.
+
+### 5. Create an isolated workspace
+
+Invoke `superpowers:using-git-worktrees` to create a branch and worktree for this
+implementation. Use a branch name derived from the feature or issue (e.g.
+`feat/[short-name]` or `fix/[short-name]`).
+
+**Do not proceed to step 6 if still on main after this step.** If the worktree skill
+leaves the session on main, stop and investigate before continuing.
+
+### 6. Implement with superpowers
 
 Invoke `superpowers:writing-plans` with the following context. These instructions take
 precedence over writing-plans' own defaults where they conflict.
@@ -68,3 +111,13 @@ hierarchy until reaching a parent with unchecked children, or the root.
 
 **Code review.** After all tasks complete and before invoking
 `superpowers:finishing-a-development-branch`, run `gpt-code-review`.
+
+**Finishing.** Invoke `superpowers:finishing-a-development-branch` with the following
+context: this session is running inside a worktree. Present only these options:
+
+1. Push and create a PR
+2. Keep the worktree as-is to return later
+3. Discard the work
+
+Do not offer merge locally. Do not delete the worktree when pushing — keep it intact
+until the PR merges.
