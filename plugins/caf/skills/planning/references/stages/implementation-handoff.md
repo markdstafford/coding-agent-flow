@@ -14,11 +14,18 @@ After task decomposition is approved and the human is ready to begin implementat
 
 ### 1. Confirm the implementation system
 
-If the human has not already indicated a preference, ask:
+Check how many implementation systems are configured:
 
-> "Ready to implement. Which system should we use? (Currently available: superpowers)"
+- **One system available**: announce it and proceed without prompting.
+  Example: "Handing off to superpowers. Continuing…"
+- **Multiple systems available**: present them as a numbered list and wait for a
+  numeric response before continuing. Example:
+  > "Ready to implement. Which system should we use?
+  > 1. superpowers
+  > 2. [other system]"
 
-If the human has already said "implement with superpowers" or similar, skip the prompt.
+Currently superpowers is the only configured system, so in practice this step always
+auto-selects and announces superpowers until a second system is added.
 
 ### 2. State the task list location
 

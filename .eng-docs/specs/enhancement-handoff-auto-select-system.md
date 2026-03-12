@@ -26,12 +26,29 @@ The current prompt asks "Which system should we use?" even when only one system 
 
 ### Affected files
 
-*(Populated during tech specs stage — list files that will change and why)*
+- `skills/planning/references/stages/implementation-handoff.md` — step 1 system-selection logic
 
 ### Changes
 
-*(Added by tech specs stage — frame as delta on the parent feature's tech spec)*
+**Step 1 — Confirm the implementation system**
+
+Replace the current unconditional prompt with a conditional:
+
+- If one system is configured: announce it and proceed without prompting. Example: "Handing off to superpowers. Continuing…"
+- If multiple systems are configured: present them as a numbered list and wait for a numeric response before continuing.
+
+Currently superpowers is the only configured system, so in practice this change means step 1 always auto-selects and announces superpowers until a second system is added.
+
+No other files, wiki documents, or ADRs are affected.
 
 ## Task list
 
-*(Added by task decomposition stage)*
+- [x] **Story: Update system selection in implementation handoff**
+  - [x] **Task: Replace unconditional system prompt with conditional logic**
+    - **Description**: In `skills/planning/references/stages/implementation-handoff.md`, replace step 1's unconditional "Which system should we use?" prompt with a conditional. If one system is configured, announce it and proceed (e.g. "Handing off to superpowers. Continuing…"). If multiple systems are configured, present them as a numbered list and wait for a numeric response. Remove the existing "if the human has already said 'implement with superpowers'" clause — the new conditional covers that case.
+    - **Acceptance criteria**:
+      - [ ] Step 1 does not prompt the user when superpowers is the only system
+      - [ ] Step 1 announces the auto-selected system before proceeding
+      - [ ] Step 1 presents a numbered list when multiple systems are available
+      - [ ] Numeric input is accepted for multi-system selection
+    - **Dependencies**: None
